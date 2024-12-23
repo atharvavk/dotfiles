@@ -4,9 +4,10 @@
 -- Forum: https://www.reddit.com/r/lunarvim/
 -- Discord: https://discord.com/invite/Xb9B4Ny
 
+vim.wo.relativenumber = true
 vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "rust_analyzer" })
 vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "jdtls" })
-
+vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "gopls" })
 
 lvim.plugins = {
   --utility plugins
@@ -20,6 +21,15 @@ lvim.plugins = {
         })
     end
   },
+  {
+    "atiladefreitas/lazyclip",
+    config = function()
+        require("lazyclip").setup()
+    end,
+    keys = {
+        { "<leader>y", ":lua require('lazyclip').show_clipboard()<CR>", desc = "Open Clipboard Manager" },
+    },
+  },
   --java plugins
   "mfussenegger/nvim-jdtls",
   --
@@ -29,7 +39,10 @@ lvim.plugins = {
     'mrcjkb/rustaceanvim',
     version = '^5', -- Recommended
     lazy = false, -- This plugin is already lazy
-  }
+  },
+  --go plugins
+  "olexsmir/gopher.nvim",
+  "leoluz/nvim-dap-go",
 }
 
 --keybindings

@@ -141,6 +141,10 @@ export PATH=~/.local/bin:$PATH
 
 export PATH=~/.local/cargo/bin:$PATH
 
+#GO
+export PATH=/usr/local/go/bin:$PATH
+export PATH=/home/atharva/go/bin:$PATH
+
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
@@ -151,6 +155,7 @@ export EDITOR=lvim
 
 
 #zoxide and fzf
-eval "$(zoxide init --cmd cd bash)"
+eval "$( zoxide init --cmd cd bash )"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+. "$HOME/.cargo/env"

@@ -116,10 +116,18 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# pbcopy and pbpaste using xclip
+pbcopy() {
+  xclip -selection clipboard
+}
 
+pbpaste() {
+  xclip -selection clipboard -o
+}
 
 #custom config begins here
-
+alias k=/usr/local/bin/kubectl
+eval "$(k completion bash)"
 
 #starship terminal prompt
 eval "$(starship init bash)"
@@ -149,6 +157,8 @@ export PATH=/home/atharva/go/bin:$PATH
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
+# Docker socket
+export DOCKER_HOST=unix:///run/user/1000/docker.sock
 
 #default editor
 export EDITOR=lvim
@@ -159,3 +169,17 @@ eval "$( zoxide init --cmd cd bash )"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 . "$HOME/.cargo/env"
+
+complete -C /usr/bin/terraform terraform
+source /home/atharva/dev/.venv/bin/activate
+
+# pnpm
+export PNPM_HOME="/home/atharva/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+# opencode
+export PATH=/home/atharva/.opencode/bin:$PATH

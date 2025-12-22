@@ -1,0 +1,34 @@
+sethandler <S-CR> a:vim
+sethandler <S-Left> a:vim
+sethandler <C-Left> a:vim
+sethandler <S-Right> a:vim
+sethandler <S-Down> a:vim
+sethandler <C-A> a:vim
+sethandler <C-C> a:vim
+sethandler <C-D> a:vim
+sethandler <C-H> a:vim
+sethandler <C-I> a:vim
+sethandler <C-J> a:vim
+sethandler <C-L> a:vim
+sethandler <C-N> a:vim
+sethandler <C-O> a:vim
+sethandler <C-P> a:vim
+sethandler <C-R> a:vim
+sethandler <C-V> a:vim
+sethandler <C-W> a:vim
+
+set number
+set relativenumber
+set clipboard=unnamedplus
+autocmd InsertEnter * : set norelativenumber
+autocmd InsertLeave * : set relativenumber
+
+inoremap jk <Esc>
+nmap <Space>dt :action ToggleLineBreakpoint<CR>
+nmap <Space>di :action StepInto<CR>
+nmap <Space>do :action StepOver<CR>
+nmap <Space>tt :action ActivateTerminalToolWindow<CR>
+nmap <Space>tc :action HideActiveWindow<CR>
+nmap gi :action GotoImplementation<CR>
+nmap gr :action ShowUsages<CR>
+nmap <Space>dc :action Resume<CR>

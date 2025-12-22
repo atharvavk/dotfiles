@@ -49,7 +49,7 @@ local config = {
     "java.base/java.lang=ALL-UNNAMED",
     "-javaagent:" .. home .. "/.local/share/lvim/mason/packages/jdtls/lombok.jar",
     "-jar",
-    vim.fn.glob(home .. "/.local/share/lvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_1.6.900.v20240613-2009.jar"),
+    vim.fn.glob(home .. "/.local/share/lvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_1.7.0.v20250331-1702.jar"),
     "-configuration",
     home .. "/.local/share/lvim/mason/packages/jdtls/config_" .. os_config,
     "-data",
@@ -67,8 +67,8 @@ local config = {
         updateBuildConfiguration = "interactive",
         runtimes = {
           {
-            name = "JavaSE-17",
-            path = "/home/atharva/.sdkman/candidates/java/17.0.13-amzn",
+            name = "JavaSE-21",
+            path = "/home/atharva/.sdkman/candidates/java/21.0.7-amzn",
           },
         },
       },

@@ -4,7 +4,7 @@ if not status then
 end
 
 -- Setup Workspace
-local home = "/home/atharva"
+local home = "/Users/atharvakulkarni"
 local workspace_path = home .. "/.local/share/lunarvim/jdtls-workspace/"
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 local workspace_dir = workspace_path .. project_name
@@ -22,7 +22,7 @@ extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
 
 -- Setup Testing and Debugging
 local bundles = {}
-local mason_path = vim.fn.glob("/home/atharva/.local/share/lvim/mason/")
+local mason_path = vim.fn.glob("/Users/atharvakulkarni/.local/share/lvim/mason/")
 vim.list_extend(bundles, vim.split(vim.fn.glob(mason_path .. "packages/java-test/extension/server/*.jar"), "\n"))
 vim.list_extend(
   bundles,
@@ -49,7 +49,7 @@ local config = {
     "java.base/java.lang=ALL-UNNAMED",
     "-javaagent:" .. home .. "/.local/share/lvim/mason/packages/jdtls/lombok.jar",
     "-jar",
-    vim.fn.glob(home .. "/.local/share/lvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_1.7.0.v20250331-1702.jar"),
+    vim.fn.glob(home .. "/.local/share/lvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_*.jar"),
     "-configuration",
     home .. "/.local/share/lvim/mason/packages/jdtls/config_" .. os_config,
     "-data",
@@ -67,8 +67,12 @@ local config = {
         updateBuildConfiguration = "interactive",
         runtimes = {
           {
-            name = "JavaSE-21",
-            path = "/home/atharva/.sdkman/candidates/java/21.0.7-amzn",
+            name = "JavaSE-17",
+            path = "/Users/atharvakulkarni/.sdkman/candidates/java/17.0.17-amzn",
+          },
+          {
+            name = "JavaSE-24",
+            path = "/Users/atharvakulkarni/.sdkman/candidates/java/24.0.2-amzn",
           },
         },
       },
@@ -103,11 +107,11 @@ local config = {
 
 config["on_attach"] = function(client, bufnr)
   local _, _ = pcall(vim.lsp.codelens.refresh)
-	require("jdtls").setup_dap({ hotcodereplace = "auto" })
-	-- require("lvim.lsp").on_attach(client, bufnr)
+  require("jdtls").setup_dap({ hotcodereplace = "auto" })
+  -- require("lvim.lsp").on_attach(client, bufnr)
   local status_ok, jdtls_dap = pcall(require, "jdtls.dap")
   -- if status_ok then
-    jdtls_dap.setup_dap_main_class_configs()
+  jdtls_dap.setup_dap_main_class_configs()
   -- end
 end
 
@@ -131,21 +135,21 @@ if not status_ok then
 end
 
 local opts = {
-  mode = "n", -- NORMAL mode
+  mode = "n",     -- NORMAL mode
   prefix = "<leader>",
-  buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-  silent = true, -- use `silent` when creating keymaps
+  buffer = nil,   -- Global mappings. Specify a buffer number for buffer local mappings
+  silent = true,  -- use `silent` when creating keymaps
   noremap = true, -- use `noremap` when creating keymaps
-  nowait = true, -- use `nowait` when creating keymaps
+  nowait = true,  -- use `nowait` when creating keymaps
 }
 
 local vopts = {
-  mode = "v", -- VISUAL mode
+  mode = "v",     -- VISUAL mode
   prefix = "<leader>",
-  buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-  silent = true, -- use `silent` when creating keymaps
+  buffer = nil,   -- Global mappings. Specify a buffer number for buffer local mappings
+  silent = true,  -- use `silent` when creating keymaps
   noremap = true, -- use `noremap` when creating keymaps
-  nowait = true, -- use `nowait` when creating keymaps
+  nowait = true,  -- use `nowait` when creating keymaps
 }
 
 local mappings = {
